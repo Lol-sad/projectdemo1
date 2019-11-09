@@ -17,10 +17,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
     public User registerUser(UserDto userDto){
         User user = new User();
         user.setEmail(userDto.getEmail());
-        user.setName(userDto.getUsername());
+        user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userRepository.save(user);
         return user;
