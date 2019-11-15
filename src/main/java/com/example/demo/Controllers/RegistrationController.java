@@ -44,6 +44,7 @@ public class RegistrationController {
         if(user != null){
             result.rejectValue("username", null, "Username is taken");
         }
+        System.out.println(1111111);
         userService.registerUser(accountDto);
         return "home";
     }

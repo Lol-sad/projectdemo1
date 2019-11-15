@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public User findByEmail(String email){
@@ -27,7 +25,7 @@ public class UserService {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setPassword(userDto.getPassword());
         userRepository.save(user);
         return user;
     }
